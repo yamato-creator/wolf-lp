@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Users, Globe, Building, ChevronDown, MapPin, CheckCircle, Target, Briefcase, Locate as Location, DollarSign, ArrowUpRight } from 'lucide-react';
+import logo from './assets/images/logo.jpg';
 import event1 from './assets/images/event1.jpg';
 import event2 from './assets/images/event2.jpg';
 import event3 from './assets/images/event3.jpg';
+import event4 from './assets/images/event4.jpg';
+import event5 from './assets/images/event5.jpg';
+import event6 from './assets/images/event6.jpg';
 import chart from './assets/images/chart.jpg';
 
 const LandingPage = () => {
@@ -28,6 +32,11 @@ const LandingPage = () => {
     return (
       <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
         <div className="text-center">
+          <img 
+            src={logo} 
+            alt="Wolf Logo" 
+            className="h-32 w-32 mx-auto mb-8 object-cover rounded-full animate-fade-in" 
+          />
           <h1 className="text-6xl md:text-8xl font-bold text-white animate-fade-in">
             株式会社wolf
           </h1>
@@ -39,9 +48,12 @@ const LandingPage = () => {
   return (
     <div className="bg-gradient-to-b from-[#1f2120] to-black w-full">
       {/* Company Name Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[#1f2120] to-transparent py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-sm py-4">
         <div className="w-full px-6 flex flex-col items-center justify-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg mb-4">株式会社wolf</h1>
+          <div className="flex items-center gap-4 mb-4">
+            <img src={logo} alt="Wolf Logo" className="h-12 w-12 object-cover rounded-full" />
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">株式会社wolf</h1>
+          </div>
           
           <nav className="hidden md:flex items-center gap-12">
             <button
@@ -64,15 +76,6 @@ const LandingPage = () => {
               className="text-xl md:text-2xl text-white hover:text-gray-300 transition-colors font-medium"
             >
               EVENTS
-            </button>
-            <button
-              onClick={() => {
-                const jobsSection = document.querySelector('section:nth-of-type(4)');
-                jobsSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-xl md:text-2xl text-white hover:text-gray-300 transition-colors font-medium"
-            >
-              JOBS
             </button>
             <button
               onClick={() => {
@@ -178,7 +181,9 @@ const LandingPage = () => {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-gray-400 via-white to-gray-400">EVENTS</h2>
           <h3 className="text-xl md:text-2xl mb-8 md:mb-16 text-center text-gray-400">イベント実績</h3>
-          <div className="max-w-[300px] md:max-w-[400px] mx-auto">
+          
+          {/* YouTube Video */}
+          <div className="max-w-[300px] md:max-w-[400px] mx-auto mb-16">
             <div className="relative pb-[177.78%] h-0 overflow-hidden rounded-2xl shadow-2xl border-2 border-gray-400/20">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
@@ -189,73 +194,25 @@ const LandingPage = () => {
               ></iframe>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-              <div className="overflow-hidden rounded-xl border-2 border-gray-400/20 shadow-lg duration-300">
-                <img src={event1} alt="Event 1" className="w-full object-contain" />
-              </div>
-              <div className="overflow-hidden rounded-xl border-2 border-gray-400/20 shadow-lg duration-300">
-                <img src={event2} alt="Event 2" className="w-full object-contain" />
-              </div>
-            </div>
-        </div>
-      </section>
 
-      {/* Job Listings Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-800 to-black">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-gray-400 via-white to-gray-400">JOBS</h2>
-          <h3 className="text-xl md:text-2xl mb-8 md:mb-16 text-center text-gray-400">案件情報</h3>
-          
-          {/* Job Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-            <JobCard
-              title="【在宅テレマ】【コール未経験】ポータルサイトへの無料動画掲載の提案"
-              category="在宅 テレフォンアポインター"
-              salary="7,000～円（税込）/件"
-              tags={['在宅', 'テレアポ', '未経験可']}
-            />
-            <JobCard
-              title="【単発OK】警備員"
-              category="一都三県 警備"
-              salary="10,000円交通費税込み"
-              tags={['単発', '警備', '交通費支給']}
-            />
-            <JobCard
-              title="【単発OK】荷上げ作業員"
-              category="一都三県 資材搬入"
-              salary="12,000円税込/人工"
-              tags={['単発', '軽作業', '高収入']}
-            />
-            <JobCard
-              title="【単発OK】Amazon Walker"
-              category="東京 神奈川 配達"
-              salary="10,000円/日 税込 実働4～5h"
-              tags={['単発', '配達', '短時間']}
-            />
-            <JobCard
-              title="【土日祝モバイル】一都三県＋エリアにより全国"
-              category="一都三県＋地方 通信モバイル"
-              salary="¥11,000～/日 税込 ＋交通費"
-              tags={['土日祝', 'モバイル', '交通費支給']}
-            />
-            <JobCard
-              title="【常勤モバイル】"
-              category="一都三県＋地方 通信モバイル"
-              salary="¥220,000～/月税込み 22日"
-              tags={['常勤', 'モバイル', '月給制']}
-            />
-          </div>
-          
-          <div className="text-center mt-12">
-            <a 
-              href="https://atlantic-nautilus-b44.notion.site/324406899e1543f2b7c50a5539cd1e8e?v=3aca99100c714d18991d5751e1a76400"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 text-xl md:text-2xl font-bold text-white bg-[#1f2120] hover:bg-gray-800 border-2 border-gray-400/40 rounded-full transition-all duration-300 group shadow-xl hover:shadow-2xl"
-            >
-              <span>案件の詳細はこちら</span>
-              <ArrowUpRight className="w-6 h-6 md:w-7 md:h-7 transform group-hover:translate-x-1 transition-transform" />
-            </a>
+          {/* Infinite Scroll Images */}
+          <div className="relative w-screen overflow-hidden -ml-[50vw] left-1/2">
+            <div className="flex animate-marquee whitespace-nowrap will-change-transform">
+              {[...Array(6)].map((_, setIndex) => (
+                <div key={`set-${setIndex}`} className="flex shrink-0">
+                  {[event1, event2, event3, event4, event5, event6].map((image, imageIndex) => (
+                    <div key={`image-${setIndex}-${imageIndex}`} className="w-[500px] h-[300px] mx-4">
+                      <img 
+                        src={image} 
+                        alt={`Event ${imageIndex + 1}`} 
+                        className="w-full h-full object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -284,13 +241,13 @@ const ServiceDetailCard = ({ icon, title, image, features }: { icon: React.React
       <img 
         src={image} 
         alt={title} 
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-80"></div>
     </div>
     <div className="p-8">
       <div className="flex items-center mb-6">
-        <div className="text-gray-300 mr-4">{icon}</div>
+        <div className="text-gray-300 mr-4 transform group-hover:rotate-12 transition-transform duration-300">{icon}</div>
         <h3 className="text-2xl font-bold text-white group-hover:text-gray-300 transition-colors">{title}</h3>
       </div>
       <ul className="space-y-4">
@@ -310,34 +267,6 @@ const InfoRow = ({ icon, label, value }: { icon: React.ReactNode, label: string,
     <div className="text-gray-300">{icon}</div>
     <div className="font-bold text-gray-300 md:w-32">{label}</div>
     <div className="text-white md:flex-1">{value}</div>
-  </div>
-);
-
-const JobCard = ({ title, category, salary, tags }: { title: string, category: string, salary: string, tags: string[] }) => (
-  <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 rounded-2xl group">
-    <div className="p-6">
-      <h3 className="text-xl font-bold text-white mb-4 group-hover:text-gray-300 transition-colors">
-        {title}
-      </h3>
-      <div className="flex items-center gap-2 text-gray-200 mb-4">
-        <Location className="w-4 h-4" />
-        <span>{category}</span>
-      </div>
-      <div className="flex items-center gap-2 text-white mb-6">
-        <DollarSign className="w-4 h-4 text-gray-300" />
-        <span className="font-semibold">{salary}</span>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {tags.map((tag: string, index: number) => (
-          <span
-            key={index}
-            className="px-3 py-1 bg-[#1f2120]/80 text-gray-300 text-sm rounded-full border border-gray-400/20"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
   </div>
 );
 
