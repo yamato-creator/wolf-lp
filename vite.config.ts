@@ -9,21 +9,21 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name]-[hash].js',
-        assetFileNames: (assetInfo) => {
-          if (assetInfo && assetInfo.name) {
-            const info = assetInfo.name.split('.');
-            const ext = info[info.length - 1];
-            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
-              return `assets/images/[name][extname]`;
+        entryFileNames: 'js/[name].js',
+        chunkFileNames: 'js/[name].js',
+        assetFileNames: ({ name }) => {
+          if (name) {
+            if (/\.(gif|jpe?g|png|svg)$/.test(name)) {
+              return 'images/[name][extname]';
+            }
+            if (/\.css$/.test(name)) {
+              return 'css/[name][extname]';
             }
           }
-          return `assets/[name][extname]`;
-        },
+          return '[name][extname]';
+        }
       }
     }
   }

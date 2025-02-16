@@ -1,3 +1,5 @@
 /*
-  Content-Type: application/javascript
-  X-Content-Type-Options: nosniff 
+  Content-Type: application/javascript; charset=utf-8
+  X-Content-Type-Options: nosniff
+  Access-Control-Allow-Origin: *
+*/ 
