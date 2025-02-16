@@ -10,20 +10,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
+      input: {
+        main: './index.html',
+      },
       output: {
-        entryFileNames: 'js/[name].js',
-        chunkFileNames: 'js/[name].js',
-        assetFileNames: ({ name }) => {
-          if (name) {
-            if (/\.(gif|jpe?g|png|svg)$/.test(name)) {
-              return 'images/[name][extname]';
-            }
-            if (/\.css$/.test(name)) {
-              return 'css/[name][extname]';
-            }
-          }
-          return '[name][extname]';
-        }
+        format: 'es',
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[ext]'
       }
     }
   }
