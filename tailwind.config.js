@@ -1,28 +1,43 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         sans: ['Noto Sans JP', 'sans-serif'],
         display: ['Zen Kaku Gothic New', 'sans-serif'],
       },
+      colors: {
+        primary: {
+          DEFAULT: '#1a1a1a',
+          dark: '#000000',
+        },
+      },
       animation: {
-        marquee: 'marquee 10s linear infinite',
-        marquee2: 'marquee2 10s linear infinite',
+        'fade-in': 'fade-in 1s ease-out forwards',
+        'marquee': 'marquee 25s linear infinite',
       },
       keyframes: {
-        marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-25%)' },
+        'fade-in': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
         },
-        marquee2: {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(0%)' },
+        'marquee': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
     },
   },
-  variants: {},
   plugins: [],
 };

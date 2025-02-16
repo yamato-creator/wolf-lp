@@ -1,45 +1,38 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
-  base: './',
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    modulePreload: {
-      polyfill: false
-    },
     rollupOptions: {
       output: {
-        manualChunks: undefined,
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash][extname]'
       }
     },
-    sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
+    cssCodeSplit: true,
+    sourcemap: true
+  },
+  css: {
+    postcss: './postcss.config.js',
+    modules: {
+      localsConvention: 'camelCase'
     }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
   },
   server: {
-    headers: {
-      'Content-Type': 'application/javascript',
-    },
-    cors: true
-  },
-  preview: {
-    host: true,
-    strictPort: true,
-    cors: true,
-    headers: {
-      'Content-Type': 'application/javascript',
-      'Access-Control-Allow-Origin': '*'
-    }
+    port: 5173,
+    host: true
   }
 });
