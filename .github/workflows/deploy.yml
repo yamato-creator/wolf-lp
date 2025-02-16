@@ -23,11 +23,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: List build output
+        run: ls -la dist/
+
       - name: Prepare for deployment
         run: |
           touch dist/.nojekyll
           cp dist/index.html dist/404.html
-          echo '/* application/javascript' > dist/.htaccess
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -35,4 +37,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: wolfofwallstreet.co.jp
-          force_orphan: true
