@@ -17,15 +17,24 @@ export default defineConfig({
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash][extname]'
       }
-    }
+    },
+    assetsDir: 'assets',
+    sourcemap: true,
+    manifest: true
   },
   server: {
     headers: {
       'Content-Type': 'application/javascript',
     },
+    cors: true
   },
   preview: {
     host: true,
     strictPort: true,
+    cors: true,
+    headers: {
+      'Content-Type': 'application/javascript',
+      'Access-Control-Allow-Origin': '*'
+    }
   }
 });
