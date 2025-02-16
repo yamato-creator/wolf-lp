@@ -23,12 +23,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: List build output
-        run: ls -la dist/
-
-      - name: Prepare for deployment
+      - name: Configure deployment
         run: |
           touch dist/.nojekyll
+          cp .htaccess dist/
           cp dist/index.html dist/404.html
 
       - name: Deploy
