@@ -27,6 +27,7 @@ jobs:
         run: |
           touch dist/.nojekyll
           cp dist/index.html dist/404.html
+          echo '/* application/javascript' > dist/.htaccess
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
