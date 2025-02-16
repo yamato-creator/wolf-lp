@@ -4,18 +4,26 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/wolf-lp/' : '/',
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    modulePreload: {
+      polyfill: false
+    },
     rollupOptions: {
       output: {
         manualChunks: undefined,
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
+        entryFileNames: `js/[name].js`,
+        chunkFileNames: `js/[name].[hash].js`,
+        assetFileNames: ({name}) => {
+          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
+            return 'images/[name][extname]';
+          }
+          if (/\.css$/.test(name ?? '')) {
+            return 'css/[name][extname]';
+          }
+          return '[name][extname]';
+        }
       }
     }
   }
