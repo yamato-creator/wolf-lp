@@ -2,17 +2,20 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: './',
+  base: './',  // 相対パスを使用
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
   build: {
     outDir: 'dist',
-    assetsDir: '',  // ルートに直接出力
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        entryFileNames: 'index.js'  // 固定のファイル名
+        // ハッシュ付きのファイル名を使用
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
       }
     }
   }
