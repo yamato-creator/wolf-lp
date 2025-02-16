@@ -2,6 +2,22 @@
   Content-Type: application/javascript
   X-Content-Type-Options: nosniff
 
+/*.mjs
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
+
+/*.jsx
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
+
+/*.ts
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
+
+/*.tsx
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
+
 /*.css
   Content-Type: text/css
   X-Content-Type-Options: nosniff
