@@ -7,6 +7,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
 
@@ -21,7 +23,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Configure deployment
+      - name: Prepare for deployment
         run: |
           touch dist/.nojekyll
           cp dist/index.html dist/404.html
@@ -32,4 +34,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: wolfofwallstreet.co.jp
-          enable_jekyll: false
+          force_orphan: true
