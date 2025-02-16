@@ -21,10 +21,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Create .nojekyll file
+      - name: Configure deployment
         run: |
           touch dist/.nojekyll
-          echo '/*    /index.html   200' > dist/_redirects
+          cp dist/index.html dist/404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -32,3 +32,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: wolfofwallstreet.co.jp
+          enable_jekyll: false
