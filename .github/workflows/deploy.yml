@@ -33,7 +33,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          PUBLIC_URL: /wolf-lp
+          VITE_BASE_URL: /wolf-lp
 
       - name: Prepare for deployment
         run: |

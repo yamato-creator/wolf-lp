@@ -17,10 +17,7 @@ export default defineConfig({
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash][extname]'
       }
-    },
-    assetsDir: 'assets',
-    sourcemap: true,
-    manifest: true
+    }
   },
   server: {
     headers: {
