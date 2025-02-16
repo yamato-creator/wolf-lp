@@ -9,15 +9,31 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    emptyOutDir: true,
+    sourcemap: false,
+    minify: 'terser',
     rollupOptions: {
       input: {
-        main: './index.html',
+        app: './index.html',
       },
       output: {
         format: 'es',
-        entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[ext]'
+        dir: 'dist',
+        entryFileNames: 'js/[name].[hash].js',
+        chunkFileNames: 'js/chunks/[name].[hash].js',
+        assetFileNames: ({name}) => {
+          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
+            return 'images/[name].[hash][extname]';
+          }
+          if (/\.css$/.test(name ?? '')) {
+            return 'css/[name].[hash][extname]';
+          }
+          return 'assets/[name].[hash][extname]';
+        },
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          utils: ['lucide-react']
+        }
       }
     }
   }
