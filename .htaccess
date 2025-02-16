@@ -1,0 +1,30 @@
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+
+AddType application/javascript .js
+AddType application/javascript .mjs
+AddType application/javascript .jsx
+AddType application/javascript .ts
+AddType application/javascript .tsx
+AddType text/css .css
+
+<FilesMatch "\.(js|mjs|jsx|ts|tsx)$">
+    Header set Content-Type "application/javascript"
+    Header set X-Content-Type-Options "nosniff"
+</FilesMatch>
+
+<FilesMatch "\.css$">
+    Header set Content-Type "text/css"
+    Header set X-Content-Type-Options "nosniff"
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Cache-Control "public, max-age=31536000"
+    Header unset ETag
+</IfModule>
+
+FileETag None 
