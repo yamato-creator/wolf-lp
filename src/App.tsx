@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Users, Globe, Building, ChevronDown, MapPin, CheckCircle, Target, Briefcase, Locate as Location, DollarSign, ArrowUpRight } from 'lucide-react';
+import { Users, Globe, Building, ChevronDown, MapPin, CheckCircle, Target, Briefcase } from 'lucide-react';
 import logo from './assets/images/logo.jpg';
 import event1 from './assets/images/event1.jpg';
 import event2 from './assets/images/event2.jpg';
