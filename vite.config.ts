@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/wolf-lp/' : '/',
+  base: './',
   plugins: [react()],
   build: {
     outDir: 'dist',
@@ -13,18 +13,19 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: undefined,
-        entryFileNames: `js/[name].js`,
-        chunkFileNames: `js/[name].[hash].js`,
-        assetFileNames: ({name}) => {
-          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
-            return 'images/[name][extname]';
-          }
-          if (/\.css$/.test(name ?? '')) {
-            return 'css/[name][extname]';
-          }
-          return '[name][extname]';
-        }
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash][extname]'
       }
     }
+  },
+  server: {
+    headers: {
+      'Content-Type': 'application/javascript',
+    },
+  },
+  preview: {
+    host: true,
+    strictPort: true,
   }
 });
