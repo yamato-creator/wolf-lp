@@ -308,7 +308,10 @@ const LandingPage = () => {
             <h2 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-8 leading-tight animate-fade-in text-white drop-shadow-lg">
               狼のように<br/>アグレッシブに
             </h2>
-            <h3 className="text-2xl md:text-3xl mb-4 md:mb-8 text-white font-bold drop-shadow-lg animate-slide-right" style={{ animationDelay: '0.5s' }}>
+            <h3 
+              className="text-2xl md:text-3xl mb-4 md:mb-8 text-white font-bold drop-shadow-lg animate-fade-in" 
+              style={{ animationDelay: '0s' }}
+            >
               盆地徹底
             </h3>
           </div>
@@ -334,47 +337,41 @@ const LandingPage = () => {
           <h3 className="text-xl md:text-2xl mb-8 md:mb-16 text-center text-gray-400">事業内容</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className={`transition-all duration-700 delay-100 ${visibleSections.includes('services') ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <Card3D>
-                <ServiceDetailCard
-                  icon={<Globe className="w-12 h-12" />}
-                  title="イベント企画・運営"
-                  image={event3}
-                  features={[
-                    "企業の求める目的に合わせた各種イベントの企画・運営",
-                    "東京タワーRED貸切パーティーの実績",
-                    "トランポランド貸切イベントの実績",
-                  ]}
-                />
-              </Card3D>
+              <ServiceDetailCard
+                icon={<Globe className="w-12 h-12" />}
+                title="イベント企画・運営"
+                image={event3}
+                features={[
+                  "企業の求める目的に合わせた各種イベントの企画・運営",
+                  "東京タワーRED貸切パーティーの実績",
+                  "トランポランド貸切イベントの実績",
+                ]}
+              />
             </div>
             <div className={`transition-all duration-700 delay-300 ${visibleSections.includes('services') ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <Card3D>
-                <ServiceDetailCard
-                  icon={<Briefcase className="w-12 h-12" />}
-                  title="法人営業支援"
-                  image="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1920"
-                  features={[
-                    "完全保証型の営業支援「UURO」をパートナーとして運営",
-                    "月2件の商談を確実に創出し、成果が出なければ返金",
-                    "50万円～100万円の成果報酬型プランを提供",
-                    "月間300アポ実績あり"
-                  ]}
-                />
-              </Card3D>
+              <ServiceDetailCard
+                icon={<Briefcase className="w-12 h-12" />}
+                title="法人営業支援"
+                image="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1920"
+                features={[
+                  "完全保証型の営業支援「UURO」をパートナーとして運営",
+                  "月2件の商談を確実に創出し、成果が出なければ返金",
+                  "50万円～100万円の成果報酬型プランを提供",
+                  "月間300アポ実績あり"
+                ]}
+              />
             </div>
             <div className={`transition-all duration-700 delay-500 ${visibleSections.includes('services') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <Card3D>
-                <ServiceDetailCard
-                  icon={<Target className="w-12 h-12" />}
-                  title="適性検査サービス"
-                  image={chart}
-                  features={[
-                    "早稲田大学教授陣監修の250問で、人材の才能を科学的に診断",
-                    "導入企業で採用コスト削減・売上向上を実現、最短6ヶ月で効果実感",
-                    "感覚から数値化された評価へ。最適な人材を確実に見極めます"
-                  ]}
-                />
-              </Card3D>
+              <ServiceDetailCard
+                icon={<Target className="w-12 h-12" />}
+                title="適性検査サービス"
+                image={chart}
+                features={[
+                  "早稲田大学教授陣監修の250問で、人材の才能を科学的に診断",
+                  "導入企業で採用コスト削減・売上向上を実現、最短6ヶ月で効果実感",
+                  "感覚から数値化された評価へ。最適な人材を確実に見極めます"
+                ]}
+              />
             </div>
           </div>
         </div>
@@ -392,33 +389,35 @@ const LandingPage = () => {
             <AnimatedText text="実績" delay={0.3} />
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 rounded-2xl p-8 text-center hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 transform hover:scale-105">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                <CountUpAnimation end={300} suffix="+" />
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+            <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 rounded-2xl p-8 md:p-10 text-center hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 transform hover:scale-105 h-[180px] flex flex-col justify-center items-center">
+              <p className="text-gray-300 text-lg font-medium mb-2">月間アポイント実績</p>
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-white">
+                  <CountUpAnimation end={300} />
+                </span>
+                <span className="text-gray-300 text-base font-medium mt-1">件以上</span>
               </div>
-              <p className="text-gray-400 text-lg">月間アポイント実績</p>
             </div>
             
-            <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 rounded-2xl p-8 text-center hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 transform hover:scale-105">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                <CountUpAnimation end={50} suffix="社" />
+            <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 rounded-2xl p-8 md:p-10 text-center hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 transform hover:scale-105 h-[180px] flex flex-col justify-center items-center">
+              <p className="text-gray-300 text-lg font-medium mb-2">取引企業数</p>
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-white">
+                  <CountUpAnimation end={20} />
+                </span>
+                <span className="text-gray-300 text-base font-medium mt-1">社以上</span>
               </div>
-              <p className="text-gray-400 text-lg">取引企業数</p>
             </div>
             
-            <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 rounded-2xl p-8 text-center hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 transform hover:scale-105">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                <CountUpAnimation end={20} suffix="件" />
+            <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 rounded-2xl p-8 md:p-10 text-center hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 transform hover:scale-105 h-[180px] flex flex-col justify-center items-center">
+              <p className="text-gray-300 text-lg font-medium mb-2">イベント実績</p>
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-white">
+                  <CountUpAnimation end={40} />
+                </span>
+                <span className="text-gray-300 text-base font-medium mt-1">件以上</span>
               </div>
-              <p className="text-gray-400 text-lg">イベント実績</p>
-            </div>
-            
-            <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 rounded-2xl p-8 text-center hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 transform hover:scale-105">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                <CountUpAnimation end={98} suffix="%" />
-              </div>
-              <p className="text-gray-400 text-lg">顧客満足度</p>
             </div>
           </div>
         </div>
@@ -521,8 +520,8 @@ const LandingPage = () => {
 };
 
 const ServiceDetailCard = ({ icon, title, image, features }: { icon: React.ReactNode, title: string, image: string, features: string[] }) => (
-  <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 overflow-hidden rounded-2xl group">
-    <div className="relative h-64 overflow-hidden">
+  <div className="bg-gradient-to-br from-[#1f2120] to-black border border-gray-400/20 hover:shadow-2xl hover:shadow-gray-400/10 transition-all duration-300 overflow-hidden rounded-2xl group h-[450px] flex flex-col">
+    <div className="relative h-56 overflow-hidden flex-shrink-0">
       <img 
         src={image} 
         alt={title} 
@@ -530,14 +529,14 @@ const ServiceDetailCard = ({ icon, title, image, features }: { icon: React.React
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-80"></div>
     </div>
-    <div className="p-8">
-      <div className="flex items-center mb-6">
+    <div className="p-5 flex-grow">
+      <div className="flex items-center mb-3">
         <div className="text-gray-300 mr-4 transform group-hover:rotate-12 transition-transform duration-300">{icon}</div>
         <h3 className="text-2xl font-bold text-white group-hover:text-gray-300 transition-colors">{title}</h3>
       </div>
-      <ul className="space-y-4">
+      <ul className="space-y-0">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start text-gray-200 group-hover:text-white transition-colors">
+          <li key={index} className="flex items-start text-gray-200 group-hover:text-white transition-colors mb-1">
             <CheckCircle className="w-5 h-5 mr-3 text-gray-300 flex-shrink-0 mt-1" />
             <span>{feature}</span>
           </li>
