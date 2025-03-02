@@ -98,7 +98,8 @@ const CharByCharText = ({ text, className, baseDelay = 0 }: { text: string, clas
           className="inline-block animate-fade-in"
           style={{ 
             animationDelay: `${baseDelay + index * 0.05}s`,
-            animationDuration: '0.5s'
+            animationDuration: '0.5s',
+            letterSpacing: text === "アグレッシブに" ? "-0.05em" : "normal"
           }}
         >
           {char}
@@ -313,51 +314,109 @@ const LandingPage = () => {
         className="relative h-screen w-full overflow-hidden" 
         id="hero"
       >
-        <div 
-          className="absolute inset-0"
-          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-800 to-black opacity-90" />
-          <img 
-            src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=3840&q=100" 
-            alt="Night sky" 
-            className="absolute top-0 left-0 w-screen h-screen object-cover"
-          />
-        </div>
-        
-        <div className="absolute inset-0">
-          <img 
-            src="https://cdn.pixabay.com/photo/2018/09/20/22/26/wolf-3691971_1280.jpg" 
-            alt="Wolf" 
-            className="w-screen h-screen object-cover mix-blend-screen opacity-90"
-            style={{
-              objectPosition: 'center 20%',
-              transform: `scale(${1 + scrollY * 0.0005}) translateX(${scrollY * 0.05}px)`
-            }}
-          />
-        </div>
-
-        <div className="w-full relative z-10 py-80">
-          <div className="px-6 flex flex-col items-start text-left absolute bottom-0 left-0">
-            <h2 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-4 md:mb-8 leading-tight animate-fade-in text-white drop-shadow-lg">
-              狼のように<br/>アグレッシブに
-            </h2>
-            <h3 
-              className="text-3xl md:text-4xl mb-4 md:mb-8 text-white font-bold drop-shadow-lg animate-fade-in" 
-              style={{ animationDelay: '0s' }}
-            >
-              盆地徹底
-            </h3>
+        {/* Geometric background with animated elements */}
+        <div className="absolute inset-0 bg-black">
+          {/* Animated geometric shapes */}
+          <div className="absolute w-full h-full overflow-hidden">
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1f2120] to-black opacity-75" />
+            
+            {/* Diagonal lines - 他のセクションに合わせて調整 */}
+            <div className="absolute inset-0">
+              {[...Array(3)].map((_, i) => (
+                <div 
+                  key={`diag-${i}`}
+                  className="absolute h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent transform -rotate-45 origin-top-left"
+                  style={{ 
+                    top: `${30 + i * 30}%`,
+                    left: '0',
+                    width: '200%',
+                    opacity: 0.15,
+                    transform: `translateY(${scrollY * 0.1}px) rotate(-45deg)`,
+                  }}
+                />
+              ))}
+            </div>
+            
+            {/* Animated geometric shapes - 他のセクションに合わせて調整 */}
+            <div className="absolute inset-0">
+              {/* Large circle */}
+              <div 
+                className="absolute top-[10%] right-[5%] w-[300px] h-[300px] rounded-full opacity-15 border border-gray-400/20"
+                style={{ 
+                  transform: `translateY(${scrollY * 0.05}px)`,
+                  background: 'linear-gradient(135deg, rgba(75,85,99,0.05) 0%, rgba(0,0,0,0) 70%)',
+                }}
+              />
+              
+              {/* Small circle */}
+              <div 
+                className="absolute bottom-[15%] left-[10%] w-[150px] h-[150px] rounded-full opacity-15 border border-gray-400/20"
+                style={{ 
+                  transform: `translateY(${-scrollY * 0.03}px)`,
+                  background: 'linear-gradient(135deg, rgba(75,85,99,0.05) 0%, rgba(0,0,0,0) 70%)',
+                }}
+              />
+              
+              {/* Rectangle element - 他のセクションに合わせて追加 */}
+              <div 
+                className="absolute top-[40%] left-[15%] w-[200px] h-[100px] opacity-10 border border-gray-400/20"
+                style={{ 
+                  transform: `translateY(${scrollY * 0.07}px) rotate(15deg)`,
+                  background: 'linear-gradient(135deg, rgba(31,33,32,0.3) 0%, rgba(0,0,0,0) 70%)',
+                }}
+              />
+            </div>
+            
+            {/* Subtle glow effect - 他のセクションに合わせて調整 */}
+            <div 
+              className="absolute top-1/2 left-1/2 w-[800px] h-[500px] rounded-full transform -translate-x-1/2 -translate-y-1/2"
+              style={{ 
+                background: 'radial-gradient(ellipse, rgba(75,85,99,0.1) 0%, rgba(0,0,0,0) 70%)',
+                filter: 'blur(40px)'
+              }}
+            />
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 text-center pb-12">
-          <ChevronDown 
-            className="w-12 h-12 mx-auto animate-bounce text-gray-300 cursor-pointer hover:text-gray-400 transition-colors"
-            onClick={() => {
-              const nextSection = document.getElementById('video-section');
-              nextSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          />
+        
+        {/* Content */}
+        <div className="relative z-10 h-full flex flex-col justify-center items-center px-6 md:px-16 lg:px-24">
+          <div className="max-w-4xl text-center">
+            {/* Main heading with character animation */}
+            <h2 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-6 md:mb-8 leading-tight text-white">
+              <CharByCharText 
+                text="狼のように" 
+                className="block mb-2"
+                baseDelay={0.5}
+              />
+              <CharByCharText 
+                text="アグレッシブに" 
+                className="block"
+                baseDelay={1.2}
+              />
+            </h2>
+            
+            {/* Animated line - 他のセクションに合わせて調整 */}
+            <div className="h-[3px] w-[120px] bg-gradient-to-r from-gray-700 via-gray-300 to-gray-700 mb-8 animate-fade-in mx-auto" style={{ animationDelay: '2s' }} />
+            
+            {/* Tagline with glowing effect */}
+            <GlowingText className="text-3xl md:text-4xl text-gray-300 font-bold" delay={2}>
+              盆地徹底
+            </GlowingText>
+            
+            {/* Animated arrow */}
+            <div className="mt-16 md:mt-24 animate-fade-in" style={{ animationDelay: '2.5s' }}>
+              <div className="group cursor-pointer inline-flex items-center gap-2"
+                onClick={() => {
+                  const nextSection = document.querySelector('.container h2');
+                  nextSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                <span className="text-gray-400 group-hover:text-white transition-colors duration-300">DISCOVER</span>
+                <ChevronDown className="w-6 h-6 text-gray-400 group-hover:text-white animate-bounce transition-colors duration-300" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
