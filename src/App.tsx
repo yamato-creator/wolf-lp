@@ -25,7 +25,15 @@ const ScrollIndicator = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return <div className="scroll-indicator" style={{ width: `${scrollWidth}%` }} />;
+  return (
+    <div className="fixed top-0 left-0 right-0 z-[100] h-2">
+      <div className="h-full bg-gray-800/50"></div>
+      <div 
+        className="h-full bg-gradient-to-r from-white to-gray-300 absolute top-0 left-0" 
+        style={{ width: `${scrollWidth}%`, boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)' }} 
+      />
+    </div>
+  );
 };
 
 // 3Dカードエフェクト
@@ -158,12 +166,29 @@ const CountUpAnimation = ({ end, duration = 2000, prefix = '', suffix = '' }: { 
   );
 };
 
+// Add this new animation component
+const GlowingText = ({ children, className, delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) => {
+  return (
+    <div 
+      className={`${className || ''} relative overflow-hidden`}
+      style={{ 
+        animation: `pulse 3s infinite ${delay}s`,
+        animationTimingFunction: 'ease-in-out'
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
 const LandingPage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [loading, setLoading] = useState(true);
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
+  const [activeSection, setActiveSection] = useState('hero');
   
   const sectionRefs = {
+    hero: useRef<HTMLElement>(null),
     services: useRef<HTMLElement>(null),
     events: useRef<HTMLElement>(null),
     company: useRef<HTMLElement>(null),
@@ -178,10 +203,15 @@ const LandingPage = () => {
       Object.entries(sectionRefs).forEach(([key, ref]) => {
         if (ref.current) {
           const rect = ref.current.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.75 && rect.bottom > 0) {
+          if (rect.top < window.innerHeight * 0.5 && rect.bottom > 0) {
             setVisibleSections(prev => 
               prev.includes(key) ? prev : [...prev, key]
             );
+            
+            // 現在のアクティブセクションを設定
+            if (rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5) {
+              setActiveSection(key);
+            }
           }
         }
       });
@@ -225,7 +255,7 @@ const LandingPage = () => {
       <ScrollIndicator />
       
       {/* Company Name Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-sm py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-sm py-4 mt-2">
         <div className="w-full px-6 flex flex-col items-center justify-center">
           <div className="flex items-center gap-4 mb-4">
             <img src={logo} alt="Wolf Logo" className="h-12 w-12 object-cover rounded-full animate-float" />
@@ -235,50 +265,54 @@ const LandingPage = () => {
           <nav className="hidden md:flex items-center gap-12">
             <button
               onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-xl md:text-2xl text-white hover:text-gray-300 transition-colors font-medium relative group"
+              className={`text-xl md:text-2xl ${activeSection === 'hero' ? 'text-white font-bold' : 'text-gray-400'} hover:text-gray-300 transition-colors font-medium relative group`}
             >
               TOP
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'hero' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </button>
             <button
               onClick={() => {
                 const servicesSection = document.querySelector('.container h2');
                 servicesSection?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="text-xl md:text-2xl text-white hover:text-gray-300 transition-colors font-medium relative group"
+              className={`text-xl md:text-2xl ${activeSection === 'services' ? 'text-white font-bold' : 'text-gray-400'} hover:text-gray-300 transition-colors font-medium relative group`}
             >
               SERVICES
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'services' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </button>
             <button
               onClick={() => document.getElementById('stats-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-xl md:text-2xl text-white hover:text-gray-300 transition-colors font-medium relative group"
+              className={`text-xl md:text-2xl ${activeSection === 'stats' ? 'text-white font-bold' : 'text-gray-400'} hover:text-gray-300 transition-colors font-medium relative group`}
             >
               ACHIEVEMENTS
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'stats' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </button>
             <button
               onClick={() => document.getElementById('video-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-xl md:text-2xl text-white hover:text-gray-300 transition-colors font-medium relative group"
+              className={`text-xl md:text-2xl ${activeSection === 'events' ? 'text-white font-bold' : 'text-gray-400'} hover:text-gray-300 transition-colors font-medium relative group`}
             >
               EVENTS
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'events' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </button>
             <button
               onClick={() => {
                 const companySection = document.querySelector('section:last-of-type');
                 companySection?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="text-xl md:text-2xl text-white hover:text-gray-300 transition-colors font-medium relative group"
+              className={`text-xl md:text-2xl ${activeSection === 'company' ? 'text-white font-bold' : 'text-gray-400'} hover:text-gray-300 transition-colors font-medium relative group`}
             >
               COMPANY
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'company' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </button>
           </nav>
         </div>
       </header>
 
-      <section className="relative h-screen w-full overflow-hidden" id="hero">
+      <section 
+        ref={sectionRefs.hero}
+        className="relative h-screen w-full overflow-hidden" 
+        id="hero"
+      >
         <div 
           className="absolute inset-0"
           style={{ transform: `translateY(${scrollY * 0.5}px)` }}
@@ -305,11 +339,11 @@ const LandingPage = () => {
 
         <div className="w-full relative z-10 py-80">
           <div className="px-6 flex flex-col items-start text-left absolute bottom-0 left-0">
-            <h2 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-8 leading-tight animate-fade-in text-white drop-shadow-lg">
+            <h2 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-4 md:mb-8 leading-tight animate-fade-in text-white drop-shadow-lg">
               狼のように<br/>アグレッシブに
             </h2>
             <h3 
-              className="text-2xl md:text-3xl mb-4 md:mb-8 text-white font-bold drop-shadow-lg animate-fade-in" 
+              className="text-3xl md:text-4xl mb-4 md:mb-8 text-white font-bold drop-shadow-lg animate-fade-in" 
               style={{ animationDelay: '0s' }}
             >
               盆地徹底

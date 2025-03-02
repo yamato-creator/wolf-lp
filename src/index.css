@@ -52,6 +52,17 @@
   }
 }
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.9;
+    filter: brightness(1.2);
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: -100% 0;
@@ -101,6 +112,10 @@
   animation: float 3s ease-in-out infinite;
 }
 
+.animate-pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+
 .animate-shimmer {
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
@@ -112,16 +127,6 @@
 
 .animate-text-reveal {
   animation: text-reveal 1s ease-out forwards;
-}
-
-.scroll-indicator {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #ffffff, #a3a3a3);
-  z-index: 100;
-  transition: width 0.3s ease-out;
 }
 
 .hover-glow {
