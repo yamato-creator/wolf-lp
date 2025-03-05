@@ -363,7 +363,7 @@ const LandingPage = () => {
             
             {/* Tagline with glowing effect */}
             <GlowingText className="text-3xl md:text-4xl text-gray-300 font-bold" delay={2}>
-              盆地徹底
+              凡事徹底
             </GlowingText>
             
             {/* Animated arrow */}
@@ -562,7 +562,7 @@ const LandingPage = () => {
           {/* 追加のフッターセクション */}
           <div className={`mt-24 text-center transition-all duration-1000 delay-500 ${visibleSections.includes('company') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <CharByCharText 
-              text="狼のようにアグレッシブに、盆地徹底" 
+              text="狼のようにアグレッシブに、凡事徹底" 
               className="text-xl md:text-2xl text-gray-400 mb-4"
               baseDelay={0.5}
             />
