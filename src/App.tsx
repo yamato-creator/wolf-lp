@@ -554,8 +554,8 @@ const LandingPage = () => {
           <div className={`max-w-3xl mx-auto bg-gradient-to-br from-[#1f2120] to-black rounded-2xl shadow-xl p-12 border border-gray-400/20 transition-all duration-700 delay-200 hover-lift ${visibleSections.includes('company') ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <div className="grid grid-cols-1 gap-8">
               <InfoRow icon={<Building className="w-6 h-6" />} label="会社名" value="株式会社wolf" />
-              <InfoRow icon={<Users className="w-6 h-6" />} label="代表取締役" value="丸山康太" />
-              <InfoRow icon={<MapPin className="w-6 h-6" />} label="所在地" value="東京都渋谷区神宮前六丁目23番4号桑名ビル2階" />
+              <InfoRow icon={<Users className="w-6 h-6" />} label="代表取締役" value="吉澤響介" />
+              <InfoRow icon={<MapPin className="w-6 h-6" />} label="所在地" value="東京都渋谷区神宮前六丁目23番4号桑野ビル2階" />
             </div>
           </div>
           
